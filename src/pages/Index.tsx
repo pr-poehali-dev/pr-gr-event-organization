@@ -57,11 +57,14 @@ const Index = () => {
         </nav>
       </header>
 
-      <section id="главная" className="pt-32 pb-20 px-4">
-        <div className="container mx-auto">
+      <section id="главная" className="pt-32 pb-20 px-4 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5 animate-pulse-glow" />
+        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-float" style={{animationDelay: '1s'}} />
+        <div className="container mx-auto relative">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6 animate-fade-in">
-              <Badge className="bg-secondary/20 text-secondary border-secondary/30 hover:bg-secondary/30">
+            <div className="space-y-6 animate-fade-in-left">
+              <Badge className="bg-secondary/20 text-secondary border-secondary/30 hover:bg-secondary/30 animate-bounce-subtle">
                 PR/GR Специалист
               </Badge>
               <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
@@ -83,8 +86,8 @@ const Index = () => {
                 </Button>
               </div>
             </div>
-            <div className="relative animate-scale-in">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-3xl blur-3xl" />
+            <div className="relative animate-fade-in-right">
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-3xl blur-3xl animate-pulse-glow" />
               <div className="relative bg-card rounded-3xl p-8 shadow-2xl border">
                 <div className="grid grid-cols-2 gap-6">
                   {[
@@ -93,8 +96,8 @@ const Index = () => {
                     { icon: 'Trophy', label: 'Наград', value: '25+' },
                     { icon: 'Star', label: 'Рейтинг', value: '5.0' }
                   ].map((stat, i) => (
-                    <div key={i} className="text-center space-y-2">
-                      <div className="w-12 h-12 mx-auto bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center">
+                    <div key={i} className="text-center space-y-2 animate-fade-in" style={{animationDelay: `${i * 0.1}s`}}>
+                      <div className="w-12 h-12 mx-auto bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center hover:scale-110 transition-transform duration-300">
                         <Icon name={stat.icon} className="text-white" size={24} />
                       </div>
                       <div className="text-3xl font-bold">{stat.value}</div>
@@ -108,7 +111,8 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="о-мне" className="py-20 px-4 bg-muted/30">
+      <section id="о-мне" className="py-20 px-4 bg-muted/30 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-spin-slow" />
         <div className="container mx-auto">
           <div className="max-w-3xl mx-auto text-center space-y-6 animate-fade-in">
             <Badge variant="outline" className="text-primary border-primary">
@@ -128,9 +132,9 @@ const Index = () => {
                 { icon: 'Target', title: 'Точность', text: 'Выполнение в срок без компромиссов' },
                 { icon: 'Heart', title: 'Вовлечённость', text: 'Глубокое погружение в каждый проект' }
               ].map((item, i) => (
-                <Card key={i} className="border-2 hover:border-primary transition-colors">
+                <Card key={i} className="border-2 hover:border-primary transition-all duration-300 hover:scale-105 animate-fade-in-up" style={{animationDelay: `${i * 0.2}s`}}>
                   <CardContent className="pt-6 text-center space-y-3">
-                    <div className="w-16 h-16 mx-auto bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center">
+                    <div className="w-16 h-16 mx-auto bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center hover:rotate-12 transition-transform duration-300">
                       <Icon name={item.icon} className="text-white" size={28} />
                     </div>
                     <h3 className="font-semibold text-xl">{item.title}</h3>
@@ -143,7 +147,8 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="услуги" className="py-20 px-4">
+      <section id="услуги" className="py-20 px-4 relative overflow-hidden">
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}} />
         <div className="container mx-auto">
           <div className="text-center space-y-4 mb-16 animate-fade-in">
             <Badge variant="outline" className="text-secondary border-secondary">
@@ -181,9 +186,9 @@ const Index = () => {
                 gradient: 'from-primary to-secondary'
               }
             ].map((service, i) => (
-              <Card key={i} className="group hover:shadow-2xl transition-all duration-300 border-2 hover:border-primary overflow-hidden">
+              <Card key={i} className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-2 hover:border-primary overflow-hidden animate-fade-in" style={{animationDelay: `${i * 0.15}s`}}>
                 <CardHeader>
-                  <div className={`w-14 h-14 bg-gradient-to-br ${service.gradient} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                  <div className={`w-14 h-14 bg-gradient-to-br ${service.gradient} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
                     <Icon name={service.icon} className="text-white" size={28} />
                   </div>
                   <CardTitle className="text-xl">{service.title}</CardTitle>
@@ -221,9 +226,10 @@ const Index = () => {
               { title: 'Digital Conference', type: 'Конференция', attendees: '3000', date: 'Ноябрь 2024' },
               { title: 'Culture Week', type: 'Фестиваль', attendees: '8000', date: 'Декабрь 2024' }
             ].map((event, i) => (
-              <Card key={i} className="group overflow-hidden hover:shadow-xl transition-all duration-300">
+              <Card key={i} className="group overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300 animate-scale-in" style={{animationDelay: `${i * 0.1}s`}}>
                 <div className="h-48 bg-gradient-to-br from-primary via-secondary to-accent relative overflow-hidden">
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-transparent to-white/5 group-hover:to-white/10 transition-all" />
                   <div className="absolute bottom-4 left-4 right-4">
                     <Badge className="bg-white/90 text-foreground hover:bg-white mb-2">{event.type}</Badge>
                   </div>
@@ -276,9 +282,9 @@ const Index = () => {
                 readTime: '6 мин'
               }
             ].map((post, i) => (
-              <Card key={i} className="hover:shadow-lg transition-all duration-300 group cursor-pointer">
+              <Card key={i} className="hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group cursor-pointer animate-fade-in-up" style={{animationDelay: `${i * 0.15}s`}}>
                 <div className="h-40 bg-gradient-to-br from-muted to-muted/50 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
                 <CardContent className="pt-6 space-y-3">
                   <div className="flex items-center gap-3 text-xs text-muted-foreground">
@@ -304,7 +310,8 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="контакты" className="py-20 px-4 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
+      <section id="контакты" className="py-20 px-4 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 relative overflow-hidden">
+        <div className="absolute top-20 right-20 w-72 h-72 bg-secondary/10 rounded-full blur-3xl animate-float" />
         <div className="container mx-auto max-w-6xl">
           <div className="text-center space-y-4 mb-16 animate-fade-in">
             <Badge variant="outline" className="text-secondary border-secondary">
@@ -316,7 +323,7 @@ const Index = () => {
             </p>
           </div>
           <div className="grid lg:grid-cols-2 gap-12">
-            <Card className="shadow-2xl">
+            <Card className="shadow-2xl animate-fade-in-left">
               <CardHeader>
                 <CardTitle className="text-2xl">Заказать мероприятие</CardTitle>
                 <CardDescription>Заполните форму, и мы свяжемся с вами в течение 24 часов</CardDescription>
@@ -428,7 +435,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <div className="space-y-8">
+            <div className="space-y-8 animate-fade-in-right">
               <Card>
                 <CardHeader>
                   <CardTitle>Контактная информация</CardTitle>
@@ -461,7 +468,8 @@ const Index = () => {
                     {['Linkedin', 'Instagram', 'Facebook', 'Twitter'].map((social, i) => (
                       <button
                         key={i}
-                        className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center hover:scale-110 transition-transform"
+                        className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center hover:scale-110 hover:rotate-12 transition-all duration-300 animate-bounce-subtle"
+                        style={{animationDelay: `${i * 0.2}s`}}
                       >
                         <Icon name={social} className="text-white" size={20} />
                       </button>
@@ -470,7 +478,7 @@ const Index = () => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-primary to-secondary text-white border-0">
+              <Card className="bg-gradient-to-br from-primary to-secondary text-white border-0 hover:scale-105 transition-transform duration-300">
                 <CardContent className="pt-6">
                   <div className="flex items-start gap-4">
                     <Icon name="Sparkles" size={32} className="flex-shrink-0" />
