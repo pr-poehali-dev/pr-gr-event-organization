@@ -338,7 +338,7 @@ const Index = () => {
                       <Label htmlFor="company">Компания</Label>
                       <Input
                         id="company"
-                        placeholder="ООО \"Компания\""
+                        placeholder="ООО &quot;Компания&quot;"
                         value={formData.company}
                         onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                       />
