@@ -11,16 +11,20 @@ import { toast } from 'sonner';
 const Index = () => {
   const [formData, setFormData] = useState({
     name: '',
+    company: '',
     email: '',
     phone: '',
-    event: '',
+    eventType: '',
+    eventDate: '',
+    participantsCount: '',
+    budget: '',
     message: ''
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast.success('Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
-    setFormData({ name: '', email: '', phone: '', event: '', message: '' });
+    setFormData({ name: '', company: '', email: '', phone: '', eventType: '', eventDate: '', participantsCount: '', budget: '', message: '' });
   };
 
   const scrollToSection = (id: string) => {
@@ -304,75 +308,120 @@ const Index = () => {
         <div className="container mx-auto max-w-6xl">
           <div className="text-center space-y-4 mb-16 animate-fade-in">
             <Badge variant="outline" className="text-secondary border-secondary">
-              Регистрация
+              Заказ мероприятия
             </Badge>
-            <h2 className="text-4xl lg:text-5xl font-bold">Зарегистрируйтесь на мероприятие</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold">Закажите организацию мероприятия</h2>
             <p className="text-lg text-muted-foreground">
-              Заполните форму, и мы свяжемся с вами для подтверждения участия
+              Расскажите о вашем проекте, и мы подготовим индивидуальное предложение
             </p>
           </div>
           <div className="grid lg:grid-cols-2 gap-12">
             <Card className="shadow-2xl">
               <CardHeader>
-                <CardTitle className="text-2xl">Форма регистрации</CardTitle>
-                <CardDescription>Все поля обязательны для заполнения</CardDescription>
+                <CardTitle className="text-2xl">Заказать мероприятие</CardTitle>
+                <CardDescription>Заполните форму, и мы свяжемся с вами в течение 24 часов</CardDescription>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="name">Полное имя</Label>
-                    <Input
-                      id="name"
-                      placeholder="Иван Иванов"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      required
-                    />
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="name">Контактное лицо *</Label>
+                      <Input
+                        id="name"
+                        placeholder="Иван Иванов"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="company">Компания</Label>
+                      <Input
+                        id="company"
+                        placeholder="ООО \"Компания\""
+                        value={formData.company}
+                        onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                      />
+                    </div>
+                  </div>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="email">Email *</Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder="ivan@example.com"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="phone">Телефон *</Label>
+                      <Input
+                        id="phone"
+                        type="tel"
+                        placeholder="+7 (999) 123-45-67"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="eventType">Тип мероприятия *</Label>
+                      <Input
+                        id="eventType"
+                        placeholder="Конференция, форум, фестиваль..."
+                        value={formData.eventType}
+                        onChange={(e) => setFormData({ ...formData, eventType: e.target.value })}
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="eventDate">Желаемая дата</Label>
+                      <Input
+                        id="eventDate"
+                        type="date"
+                        value={formData.eventDate}
+                        onChange={(e) => setFormData({ ...formData, eventDate: e.target.value })}
+                      />
+                    </div>
+                  </div>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="participantsCount">Количество участников</Label>
+                      <Input
+                        id="participantsCount"
+                        type="number"
+                        placeholder="100"
+                        value={formData.participantsCount}
+                        onChange={(e) => setFormData({ ...formData, participantsCount: e.target.value })}
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="budget">Бюджет (руб.)</Label>
+                      <Input
+                        id="budget"
+                        placeholder="500 000"
+                        value={formData.budget}
+                        onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                      />
+                    </div>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="email">Email</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="ivan@example.com"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      required
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="phone">Телефон</Label>
-                    <Input
-                      id="phone"
-                      type="tel"
-                      placeholder="+7 (999) 123-45-67"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      required
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="event">Мероприятие</Label>
-                    <Input
-                      id="event"
-                      placeholder="Название мероприятия"
-                      value={formData.event}
-                      onChange={(e) => setFormData({ ...formData, event: e.target.value })}
-                      required
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Комментарий</Label>
+                    <Label htmlFor="message">Описание мероприятия</Label>
                     <Textarea
                       id="message"
-                      placeholder="Расскажите о своих интересах или вопросах..."
+                      placeholder="Расскажите подробнее о целях, формате, ожидаемых результатах..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       rows={4}
                     />
                   </div>
                   <Button type="submit" size="lg" className="w-full">
-                    Отправить заявку
+                    Отправить запрос
                     <Icon name="Send" className="ml-2" size={18} />
                   </Button>
                 </form>
